@@ -130,4 +130,21 @@ public class GameRoomService {
     public void save(GameRoom gameRoom) {
         gameRoomRepository.save(gameRoom);
     }
+
+    public MatchResult update(String ip) {
+        Player player = playerRepository.findByPlayerIP(ip);
+        GameRoom gameRoom = gameRoomRepository.findByRoomNo(player.getRoomNo());
+        //요청을 보낸 플레이어는 해당 room의 호스트일 것이므로
+        //Player를 조회한 뒤 해당 player의 roomNo로 room을 조회
+        if(gameRoom.getIsInGame().equals("N")) {
+            //게임중이 아니면 게임중으로 (N -> Y)
+            gameRoom.setIsInGame("Y");
+        } else {
+            //게임중이면 게임중이 아닌 것으로 (Y -> N)
+            gameRoom.setIsInGame("N");
+        }
+        MatchResult mr = new MatchResult();
+        mr.setStatus("OK");
+        return mr;
+    }
 }

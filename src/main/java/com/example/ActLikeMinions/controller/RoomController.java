@@ -52,6 +52,13 @@ public class RoomController {
         return gameRoomService.gameRoomRandomJoin(ip, port);
     }
 
+    @PostMapping("/change")
+    public MatchResult modifyPlayingState(HttpServletRequest req) {
+        String ip = ip(req);
+        String port = Integer.toString(req.getRemotePort());
+        return gameRoomService.update(ip);
+    }
+
     public String ip(HttpServletRequest req) {
         String ip = req.getHeader("X-Forwarded-For");
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
