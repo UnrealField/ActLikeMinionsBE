@@ -118,4 +118,16 @@ public class GameRoomService {
     public void gameRoomCollapse() {
         gameRoomRepository.deleteAllByMemberCountZero();
     }
+
+    public GameRoom selectGameRoom(String roomNo) {
+        return gameRoomRepository.findByRoomNo(roomNo);
+    }
+
+    public void deleteGameRoom(String roomNo) {
+        gameRoomRepository.deleteByRoomNo(roomNo);
+    }
+
+    public void save(GameRoom gameRoom) {
+        gameRoomRepository.save(gameRoom);
+    }
 }

@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -19,4 +20,8 @@ public interface GameRoomRepository extends JpaRepository<GameRoom, String> {
     @Query("DELETE FROM GameRoom g WHERE g.memberCount = 0")
     void deleteAllByMemberCountZero();
 
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM GameRoom g WHERE g.roomNo = :roomNo")
+    void deleteByRoomNo(@Param("roomNo") String roomNo);
 }

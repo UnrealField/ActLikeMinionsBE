@@ -20,5 +20,11 @@ public class PlayerService {
         playerRepository.deleteByPlayerIP(ip);
     }
 
+    public void collapsePlayer(String roomNo) {
+        playerRepository.deleteByRoomNo(roomNo);
+    }
 
+    public Player selectPlayer(String playerIP) {
+        return playerRepository.findByPlayerIP(playerIP);
+    }
 }
