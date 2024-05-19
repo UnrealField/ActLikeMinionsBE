@@ -4,8 +4,19 @@ public class MatchResult {
     private String userType; //Host, Client
     private String status; //OK, ERROR
     private String ipAddr;
-    private int port;
+    private String port;
     private String roomNo;
+
+    public MatchResult(String userType, String status, String ipAddr, String port, String roomNo) {
+        this.userType = userType;
+        this.status = status;
+        this.ipAddr = ipAddr;
+        this.port = port;
+        this.roomNo = roomNo;
+    }
+
+    public MatchResult() {
+    }
 
     public String getUserType() {
         return userType;
@@ -31,11 +42,11 @@ public class MatchResult {
         this.ipAddr = ipAddr;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(String port) {
         this.port = port;
     }
 
